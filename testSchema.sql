@@ -1,0 +1,11 @@
+DROP TABLE IF EXISTS ISBNTable;
+
+CREATE TABLE ISBNTable (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    book TEXT NOT NULL,
+    author TEXT NOT NULL,
+    ISBN FLOAT NOT NULL
+);
+
+INSERT INTO ISBNTable (book, author, ISBN)
+VALUES ("Long Island Compromise", "Taffy Brodesser-Akner", 9780593133491);
