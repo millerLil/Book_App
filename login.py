@@ -1,6 +1,6 @@
-from flask import Flask, Blueprint, request, redirect, url_for, render_template
-import sqlite3
+from flask import Blueprint, request, redirect, url_for
 import database
+import userStore
 
 login_bp = Blueprint("login", __name__)
 
@@ -34,11 +34,10 @@ def login():
         
         username = request.form["username"]
         password = request.form["password"]
-
-        import userStore
+      
         if check_user(username, password):
             userStore.set_user(username)
-            return redirect(url_for("user_screen.profile"))
+            return redirect(url_for("home.home"))
 
         else:
             userStore.set_user("")
@@ -78,7 +77,7 @@ def login():
                     <a href="./register" style="color: #007bff; text-decoration: none;">Create an account</a>
                 </div>
                 <div style="margin-top: 15px;">
-                    <a href="./resetPW" style="color: #007bff; text-decoration: none;">Reset Password</a>
+                    <a href="./reset_login" style="color: #007bff; text-decoration: none;">Reset Password</a>
                 </div>
                 <p>{message}</p>
             </div>

@@ -5,6 +5,7 @@ CREATE TABLE ISBNTable (
     book TEXT NOT NULL,
     author TEXT NOT NULL,
     ISBN FLOAT NOT NULL
+
 );
 
 INSERT INTO ISBNTable (book, author, ISBN)

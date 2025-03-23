@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, request, redirect, url_for, render_template
+from flask import Flask, Blueprint, request, redirect, url_for
 import sqlite3
 import database
 
@@ -55,7 +55,8 @@ def register():
         valEmail=userEmail
         global valUser
         valUser=userName
-        
+
+
         if (userPW != userPW2):
             message = "Passwords must match."
         else: 
@@ -67,7 +68,7 @@ def register():
             valLast=""
             valEmail=""
             valUser=""
-            return redirect(url_for("login.login"))  
+            return redirect(url_for("login.login"))  # Redirect to the login page  
 
     html = f"""
     <!DOCTYPE html>

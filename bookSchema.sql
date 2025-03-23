@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS books ;
+DROP TABLE IF EXISTS books;
 
 CREATE TABLE books (
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -10,4 +10,5 @@ CREATE TABLE books (
     bookDescription TEXT,
     genre TEXT, 
     buy TEXT
-)
+    
+);

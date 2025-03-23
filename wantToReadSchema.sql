@@ -10,4 +10,4 @@ CREATE Table user_want_to_read (
     FOREIGN Key (book_id) REFERENCES books (id), 
     PRIMARY KEY (user_id, book_id)
 
-)
+);

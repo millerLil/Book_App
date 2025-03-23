@@ -1,3 +1,4 @@
+#userStore
 _userName = ''
 
 def set_user(name):
@@ -6,7 +7,5 @@ def set_user(name):
 
 def get_user():
     return _userName
-
-
 
 

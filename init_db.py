@@ -1,22 +1,29 @@
-
 import sqlite3
 
-connection = sqlite3.connect('userDB.db')
+# Connect to SQLite database (creates database.db if it doesn't exist)
+conn = sqlite3.connect("database.db")
+cur = conn.cursor()
 
-with open('userSchema.sql') as f:
-    connection.executescript(f.read())
+# Create the users table
+cur.executescript("""
+    DROP TABLE IF EXISTS users;
 
-#with open('userReadSchema.sql') as f:
-#    connection.executescript(f.read())
+    CREATE TABLE users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        firstName TEXT NOT NULL,
+        lastName TEXT NOT NULL,
+        email TEXT NOT NULL,
+        userName TEXT NOT NULL UNIQUE,
+        userPW TEXT NOT NULL,
+        currentBook TEXT,
+        userBio TEXT,
+        userPhoto BLOB,
+        userActive BOOLEAN DEFAULT 1
+    );
+""")
 
-#with open('bookSchema.sql') as f:
-#    connection.executescript(f.read())
-    
-#with open('wanttoReasSchema.sql') as f:
-#    connection.executescript(f.read())
-    
-with open('testSchema.sql') as f:
-    connection.executescript(f.read())
+# Commit and close
+conn.commit()
+conn.close()
 
-connection.commit()
-connection.close()
+print("Database initialized successfully!")
