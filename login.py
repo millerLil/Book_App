@@ -2,6 +2,8 @@ from flask import Blueprint, request, redirect, url_for
 import database
 import userStore
 
+#Parts of the code for the login.py were taken from the comp sci class: project management. 
+
 login_bp = Blueprint("login", __name__)
 
 def check_user(name, pw):
@@ -55,7 +57,7 @@ def login():
             
             <div style="text-align: center; width: 1550px; height: 750px; background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
                 <!-- Title -->
-                <h1 style="font-size: 64px; color: white; text-shadow: 2px 2px 5px #000; margin-bottom: 20px;">BookApp</h1>
+                <h1 style="font-size: 64px; color: #001f03; text-shadow: 2px 2px 5px #000; margin-bottom: 20px;">Biblio -read more. share more.</h1>
 
                 <!-- Form -->
                 <form method="POST">
