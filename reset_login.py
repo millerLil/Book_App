@@ -1,3 +1,6 @@
+#a user can reset their password if they have forgotten it
+# they will need to enter their username and email address
+
 from flask import Flask, Blueprint, request, redirect, url_for, render_template
 import sqlite3
 import database
@@ -85,7 +88,7 @@ def resetPW():
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Registration Screen</title>
     </head>
-    <body style="display: flex; align-items: center; justify-content: center; height: 100vh;">
+    <body style="display: flex; align-items: center; justify-content: center; height: 100vh; color: white; background: #001f03;">
         <div style="text-align: center; width: 500px; font-family: fantasy">
             <h1>Limitless</h1>
             <form method="POST">

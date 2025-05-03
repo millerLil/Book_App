@@ -1,3 +1,6 @@
+#This is the webpage for the community
+# it includes posts, join book clubs, discussions, and community challenges.
+
 from flask import Blueprint, render_template_string
 
 community_bp = Blueprint("community", __name__)

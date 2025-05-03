@@ -1,6 +1,7 @@
+#Run this file to start the application
+# This file is the main entry point for the Flask application.
+
 from flask import Flask, redirect
-#testing to see if github is working
-# Importing blueprints from other files
 from login import login_bp
 from register import register_bp
 from home import home_bp
@@ -18,7 +19,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return redirect('/login')  # or '/profile' or whatever you want
+    return redirect('/login')  
 
 
 # Registering blueprints
@@ -32,8 +33,6 @@ app.register_blueprint(book1_bp, url_prefix="/book1")
 app.register_blueprint(book2_bp, url_prefix="/book2")
 app.register_blueprint(discover_bp, url_prefix="/discover")
 app.register_blueprint(community_bp, url_prefix="/community")
-
-
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,3 +1,5 @@
+#established the database connection
+
 import sqlite3
 import userStore
 

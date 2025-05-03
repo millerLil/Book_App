@@ -1,3 +1,6 @@
+#user enters a username and password, and the program checks if the username exists in the database and if the password matches.
+# If the username and password are correct, the user is redirected to the home page. If not, an error message is displayed.
+
 from flask import Blueprint, request, redirect, url_for
 import database
 import userStore
@@ -57,7 +60,7 @@ def login():
             
             <div style="text-align: center; width: 1550px; height: 750px; background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
                 <!-- Title -->
-                <h1 style="font-size: 64px; color: #001f03; text-shadow: 2px 2px 5px #000; margin-bottom: 20px;">Biblio -read more. share more.</h1>
+                <h1 style="font-size: 64px; color: #001f03; text-shadow: 2px 2px 5px #000; margin-bottom: 20px;">Biblio -read more. share</h1>
 
                 <!-- Form -->
                 <form method="POST">
@@ -76,10 +79,10 @@ def login():
 
                 <!-- Link -->
                 <div style="margin-top: 15px;">
-                    <a href="./register" style="color: #007bff; text-decoration: none;">Create an account</a>
+                    <a href="/register" style="color: #007bff; text-decoration: none;">Create an account</a>
                 </div>
                 <div style="margin-top: 15px;">
-                    <a href="./reset_login" style="color: #007bff; text-decoration: none;">Reset Password</a>
+                    <a href="/reset_login" style="color: #007bff; text-decoration: none;">Reset Password</a>
                 </div>
                 <p>{message}</p>
             </div>

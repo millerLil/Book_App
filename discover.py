@@ -1,3 +1,6 @@
+#helps users discover more books
+#has a search option, interactive map, reccomended books, etc. 
+
 from flask import Blueprint, render_template_string
 
 discover_bp = Blueprint("discover", __name__)

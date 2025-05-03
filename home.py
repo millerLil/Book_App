@@ -1,3 +1,5 @@
+#After logging in, the user is redirected to the home page 
+# This is where they can search for books, view their profile, and discover new books.
 from flask import Blueprint, redirect, url_for, request
 
 home_bp = Blueprint("home", __name__)
@@ -104,7 +106,6 @@ def home():
                 padding: 20px;
                 border-radius: 12px;
                 text-align: center;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.3);
                 transition: transform 0.3s;
             }
 
@@ -122,7 +123,6 @@ def home():
                 padding: 20px;
                 border-radius: 12px;
                 color: white;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             }
 
             <!--AI coded the the script/HTML?CSS for the like button-->

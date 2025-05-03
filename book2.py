@@ -1,9 +1,9 @@
+# This is the book page for The Godfather.
+# It created a book photo, reviews, summary, rating, where to buy it, etc.
+
 from flask import Flask, Blueprint, render_template_string
 
-
 book2_bp = Blueprint("book2", __name__)
-
-
 
 @book2_bp.route('/', methods=['GET'])
 def book2():
@@ -36,7 +36,7 @@ def book2():
             }
 
             nav li h2 {
-                color: lightblue;
+                color: #32CD32;
                 padding: 14px 16px;
                 margin: 0;
             }
@@ -170,7 +170,7 @@ def book2():
     <body>
         <nav>
             <ul>
-                <li><h2>Book App</h2></li>
+                <li><h2>Biblio</h2></li>
                 <li><a class = "active" href="/home">Home</a></li>
                 <li><a class = "active" href="/discover">Discover Books</a></li>
                 <li><a class = "active" href="/community">Community</a></li>

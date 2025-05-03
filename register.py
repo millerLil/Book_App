@@ -1,3 +1,6 @@
+#A user registers for the app by giving a form differnt values (like name, email, password)
+#this is stored in the suer database
+
 from flask import Flask, Blueprint, request, redirect, url_for
 import sqlite3
 import database
@@ -11,6 +14,9 @@ valEmail = ""
 valUser = ""
 valPW = ""
 valPW2 = ""
+currentBook = ""
+agaol = ""
+bio = ""
 
 def add_user(firstName, lastName, email, userName, userPW):
     # Get database connection
@@ -38,6 +44,10 @@ def add_user(firstName, lastName, email, userName, userPW):
 @register_bp.route("/", methods=["GET", "POST"])
 def register():
     message = ""
+    currentBook = ""
+    agoal = ""
+    bio = ""
+
     if request.method == "POST":
         firstName = request.form["firstName"]
         lastName = request.form["lastName"]
@@ -45,6 +55,9 @@ def register():
         userName = request.form["userName"]
         userPW = request.form["userPW"]
         userPW2 = request.form["userPW2"]
+        currentBook = request.form["currentbook"]
+        agoal = request.form["agoal"]
+        bio = request.form["bio"]
 
         # Retain field values
         global valFirst
@@ -55,6 +68,7 @@ def register():
         valEmail=userEmail
         global valUser
         valUser=userName
+
 
 
         if (userPW != userPW2):
@@ -68,7 +82,10 @@ def register():
             valLast=""
             valEmail=""
             valUser=""
-            return redirect(url_for("login.login"))  # Redirect to the login page  
+            currentBook=""
+            agoal=""
+            bio=""
+            return redirect(url_for("login.login"))    
 
     html = f"""
     <!DOCTYPE html>
@@ -78,9 +95,9 @@ def register():
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Registration Screen</title>
     </head>
-    <body style="display: flex; align-items: center; justify-content: center; height: 100vh;">
+    <body style="display: flex; align-items: center; justify-content: center; height: 100vh; color: white; background: #001f03;">
         <div style="text-align: center; width: 500px; font-family: fantasy">
-            <h1>BookApp</h1>
+            <h1>Biblio</h1>
             <form method="POST">
                 <div style="font-family: sans-serif">
                     <label>First Name:</label>
@@ -106,6 +123,17 @@ def register():
                     <label>Confirm Password:</label>
                     <input type="password" name="userPW2" placeholder="Confirm password" value=\"{valPW2}\" required>
                 </div>
+                <div style="margin-top: 10px; font-family: sans-serif">
+                    <label>Current Book:</label>
+                    <input type="text" name="currentbook" placeholder="Enter the book you are currently reading" value=\"{currentBook}\" required>
+                </div>
+                <div style="margin-top: 10px; font-family: sans-serif">
+                    <label>A Reading Goal:</label>
+                    <input type="tect" name="agoal" placeholder="Enter a reading goal" value=\"{agoal}\" required>
+                </div>
+                <div style="margin-top: 10px; font-family: sans-serif">
+                    <label>Bio:</label>
+                    <input type="text" name="bio" placeholder="Enter a short bio" value=\"{bio}\" required>
                 <div style="margin-top: 20px; font-family: sans-serif">
                     <button type="submit">Register</button>
                 </div>

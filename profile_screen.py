@@ -1,3 +1,6 @@
+#this is the profile page for the user that pulls from the user database
+#it has the users name, goals, books read, and posts
+
 from flask import Flask, Blueprint, render_template_string, request, redirect, url_for
 from jinja2 import Template
 import sqlite3
@@ -12,15 +15,13 @@ profile_data = {
     "lastName": "Enter last name here",
     "email": "Enter email here",
     "userName": "Enter user name here",
-    "userBio": "Enter biography here"
+    "userBio": "Enter biography here",
 }
 
 def get_data():
     userName = userStore.get_user()
 
-    # Get database connection
     conn = database.get_db_connection()
-    # Create cursor
     cur = conn.cursor()
 
     try:
@@ -46,7 +47,11 @@ def get_data():
 
 @profile_bp.route('/')
 def profile():
+
     get_data()
+
+    is_lily = profile_data.get("firstName") == "Lily" and profile_data.get("lastName") == "Miller"
+
 
     html = """
     <!DOCTYPE html>
@@ -122,7 +127,7 @@ def profile():
 
             .name-box {
                 color: white;
-                background-color: #003f1f;
+                background-color: #3a5f3a;
                 padding: 10px 15px;
                 border: 2px solid #ccc;
                 border-radius: 10px;
@@ -134,7 +139,7 @@ def profile():
             .book-icon-large {
                 width: 160px;
                 height: 200px;
-                background-color: #ccc;
+                background-color: #yellow;
                 border: 3px solid black;
             }
 
@@ -175,25 +180,25 @@ def profile():
 
             .book-grid {
                 display: grid;
-                grid-template-columns: repeat(3, 100px);  /* 2 columns */
+                grid-template-columns: repeat(3, 100px);  
                 gap: 15px;
                 row-gap: 55px:
                 margin: 15px auto 0;
-                width: 60%;  /* only take up half the page width */
+                width: 60%;  
                 justify-content: center;
             }
 
            .book-icon {
-            width: 90px;
-            height: 130px;
-            background-color: #ddd;
-            border: 2px solid #999;
-            border-radius: 5px;
-        }
+                width: 90px;
+                height: 130px;
+                background-color: #ddd;
+                border: 2px solid #999;
+                border-radius: 5px;
+            }
 
             .goals-box {
                 color: white;
-                background-color: #003f1f;
+                background-color: #3a5f3a;
                 padding: 10px 15px;
                 border: 2px solid #ccc;
                 border-radius: 10px;
@@ -212,6 +217,8 @@ def profile():
                 background: #eee;
                 padding: 10px 20px;
                 border-radius: 5px;
+                background-color:#3a5f3a;
+                color: white;
             }
 
             .active:hover {
@@ -228,7 +235,7 @@ def profile():
                 <li><a class = "active" href="/discover">Discover Books</a></li>
                 <li><a class = "active" href="/community">Community</a></li>
                 <li style="float:right"><a class="active" href="/logout">Logout</a></li>
-                <li style="float:right"><a class="active" href="/edit">Edit Profile</a></li>
+                <li style="float:right"><a class="active" href="/edit_profile">Edit Profile</a></li>
             </ul>
         </nav>
 
@@ -236,11 +243,30 @@ def profile():
             <div class="name-box">
                 <p><strong>{{ profile.firstName }} {{ profile.lastName }}</strong></p>
             </div>
-            <div class="book-icon-large"></div>
-            <div class="bio-box">
-                <p><strong>Biography:</strong><br>{{ profile.userBio }}</p>
+            <div class="book-icon-large">
+                {% if is_lily %}
+                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1715050339i/211004055.jpg" alt="Book Cover" style="width: 100%; height: 100%; border-radius: 5px;">
+                {% else %}
+                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1394988109i/22034.jpg" alt="Book Cover" style="width: 100%; height: 100%; border-radius: 5px;">
+                {% endif %}
+            
             </div>
-            <div class="profile-pic"></div>
+            <div class="bio-box">
+                {% if is_lily %}
+                    <p><strong>I like to read!</strong></p>
+                {% else %}
+                    <p><strong>I LOVE TO READ</strong></p>
+                {% endif %}
+
+            </div>
+            <div class="profile-pic">
+                {% if is_lily %}
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOldYEbU2ih91QVXq1F9M95oio9QEa8G1ZMQ&s" alt="Profile Picture" style="width: 100%; height: 100%; border-radius: 50%;">
+                {% else %}
+                    <div class="profile-pic"></div>
+                {% endif %}
+            
+            </div>
         </div>
 
             <div class="user-details">
@@ -249,25 +275,43 @@ def profile():
 
             <div class="middle-section">
                 <div class="book-grid">
+                {% if is_lily %}
+                    <img class="book-icon" src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1223664870i/406235.jpg" alt="Book 1">
+                    <img class="book-icon" src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1716387455i/208931300.jpg" alt="Book 2">
+                    <img class="book-icon" src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1682375874i/123136728.jpg" alt="Book 3">
+                    <img class="book-icon" src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1707672124i/207300960.jpg" alt="Book 4">
+                    <img class="book-icon" src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1683818219i/139400713.jpg" alt="Book 5">
+
+                {% else %}
                     <div class="book-icon"></div>
                     <div class="book-icon"></div>
                     <div class="book-icon"></div>
                     <div class="book-icon"></div>
                     <div class="book-icon"></div>
                     <div class="book-icon"></div>
+                {% endif %}
                 </div>
 
                 <div class="goals-box">
-                    <p><strong>Goals</strong></p>
-                    <p>✔️ Read 5 books this month</p>
-                    <p>✔️ Finish "1984"</p>
+                <p><strong>My Goals</strong></p>
+                {% if is_lily %}
+                    <p>✔️ Read 53 books this year</p>
+                    <p>✔️ Finish Mutual Interest</p>
+                    <p>✔️ Read 5 non-fiction books</p>
+                {% else %}
+                    <p>✔️ Read a 500 page book</p>
+                {% endif %}
                 </div>
             </div>
 
             <div class="feed">
-                <p><strong>Your Posts</strong></p>
-                <p>✔️ Finished "The Hobbit"</p>
-                <p>📌 Saved "Dune"</p>
+                <p><strong>My Posts</strong></p>
+                {% if is_lily %}
+                    <p>Just finished reading Giovanni's Room! 📚</p>
+                    <p>Who's excited for Sally Ronney's fourth book?!</p>
+                {% else %}
+                    <p>Add posts!</strong></p>
+                {% endif %}
             </div>
 
 
@@ -276,4 +320,5 @@ def profile():
     </html>
     """
 
-    return render_template_string(html, profile=profile_data)
+    return render_template_string(html, profile=profile_data, is_lily=is_lily)
+

@@ -1,9 +1,9 @@
+# This is the book page for Mutual Interest
+# It created a book photo, reviews, summary, rating, where to buy it, etc.
+
 from flask import Flask, Blueprint, render_template_string
 
-
 book1_bp = Blueprint("book1", __name__)
-
-
 
 @book1_bp.route('/', methods=['GET'])
 def book1():
@@ -36,7 +36,7 @@ def book1():
             }
 
             nav li h2 {
-                color: lightblue;
+                color: #32CD32;
                 padding: 14px 16px;
                 margin: 0;
             }
@@ -175,9 +175,9 @@ def book1():
     <body>
         <nav>
             <ul>
-                <li><h2>Book App</h2></li>
+                <li><h2>Biblio</h2></li>
                 <li><a class = "active" href="/home">Home</a></li>
-                <li><a class = "active" href="/Books">Books</a></li>
+                <li><a class = "active" href="/discover">Discover Books</a></li>
                 <li><a class = "active" href="/community">Community</a></li>
                 <li style="float:right"><a class = "active" href="/profile">Profile</a></li>
             </ul>

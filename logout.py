@@ -1,3 +1,5 @@
+#user logout of Biblio and is taken the login screen if they press the login button
+
 from flask import Blueprint
 
 logout_bp = Blueprint("logout", __name__)
